@@ -1,0 +1,40 @@
+[package]
+name = "sample"
+version = "0.1.0"
+authors = ["Cody Chen"]
+
+# 全局编译器配置
+[compiler]
+name = "clang"
+cpp_standard = "c++20"
+stdlib = "libc++"        # 可选: libc++ / libstdc++
+flags = ["-Wall", "-Wextra"]
+
+# 全局 build 配置
+[build]
+type = "release"         # release / debug
+target = "x86_64-linux"  # 或 arm64, windows-x64 等
+system = "cmake"         # 默认构建系统，也可以为 meson / make / autotools
+
+# 全局 feature 开关
+[features]
+modules = true
+tests = true
+
+# 依赖列表
+[dependencies.fmt]
+version = "10.2.1"
+# 依赖单独构建参数，可以覆盖全局
+build_system = "cmake"      # cmake / meson / make / autotools
+build_type = "release"       # release / debug
+target = "x86_64-linux"     # 单独目标
+flags = ["-DFMT_DOC=OFF"]   # 依赖自定义编译参数
+modules = true               # 是否开启模块化
+
+[dependencies.range-v3]
+version = "0.12.0"
+build_system = "meson"
+build_type = "debug"
+target = "x86_64-linux"
+flags = []
+modules = false
