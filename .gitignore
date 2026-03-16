@@ -1,6 +1,7 @@
 *
 !*.*
 !*/
+!LICENSE
 .vscode
 .DS_Store
 *.exe
